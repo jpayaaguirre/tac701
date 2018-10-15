@@ -1,0 +1,51 @@
+package beans;
+
+import java.util.EventObject;
+
+import org.apache.camel.support.EventNotifierSupport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/*
+ */
+public class LoggingEventNotifier extends EventNotifierSupport {
+    private Logger log = LoggerFactory.getLogger(LoggingEventNotifier.class);
+    private String logName;
+
+    public void notify(EventObject event) throws Exception {
+        log.info("Event: {}", event);
+    }
+
+//    @Override
+    public boolean isDisabled() {
+        return !log.isInfoEnabled();
+    }
+
+    @Override
+    public boolean isEnabled(EventObject event) {
+        return log.isInfoEnabled();
+    }
+
+    public String getLogName() {
+        return logName;
+    }
+
+    /**
+     * Sets the log name to use.
+     *
+     * @param logName a custom log name to use
+     */
+    public void setLogName(String logName) {
+        this.logName = logName;
+    }
+
+    protected void doStart() throws Exception {
+        if (logName != null) {
+            log = LoggerFactory.getLogger(logName);
+        }
+    }
+
+    protected void doStop() throws Exception {
+    }
+
+}
