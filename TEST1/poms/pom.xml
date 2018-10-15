@@ -11,6 +11,7 @@
   <modules>
     <module>code/routines</module>
     <module>jobs/process/testcontext_0.1</module>
+    <module>jobs/routes/testmdc_0.1</module>
   </modules>
   <properties>
     <talend.project.name>TEST1</talend.project.name>
